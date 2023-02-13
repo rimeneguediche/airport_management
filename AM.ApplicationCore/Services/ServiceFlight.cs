@@ -40,6 +40,7 @@ namespace AM.ApplicationCore.Services
             return query;
         }
 
+        
 
 
         //TP2-Q8: Implémenter la méthode GetFlights(string filterType, string filterValue)
@@ -88,7 +89,48 @@ namespace AM.ApplicationCore.Services
 
         }
 
-
-        
+        public void ShowFlightDetails(Plane plane)
+        {
+            var query = from flight in Flights
+                        where flight.Plane == plane
+                        select flight;
+            foreach (var item in query)
+            {
+                Console.WriteLine(item.FlightDate);
+                Console.WriteLine(item.Destination);
+            }
         }
+
+        public IEnumerable<Flight> OrderedDurationFlights()
+        {
+            var query = from flight in Flights
+                        orderby flight.EstimatedDuration descending
+                        select flight;
+            return query;
+        }
+
+        public IEnumerable<Traveller> SeniorTravellers(Flight flight)
+        {
+            var query = from traveller in flight.Passengers.OfType<Traveller>()
+                        orderby traveller.BirthDate
+                        select traveller;
+            return query.Take(3);
+        }
+
+
+        public void DestinationGroupedFlights()
+        {
+            var query = from flight in Flights
+                        group flight by flight.Destination;
+            foreach (var group in query)
+            {
+                Console.WriteLine("Destination" + " : " + group.Key);
+                foreach (var item in group)
+                {
+                    Console.WriteLine("Decollage" + " : " + item.FlightDate);
+                }
+            }
+        }
+
     }
+}

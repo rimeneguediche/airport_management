@@ -15,6 +15,13 @@ namespace AM.ApplicationCore.Interfaces
         public IEnumerable<DateTime> GetFlightdates(string Destination);
 
 
+        public IEnumerable<Flight> OrderedDurationFlights();
+
+        public IEnumerable<Traveller> SeniorTravellers(Flight flight);
+
+        public void DestinationGroupedFlights();
+
+
 
 
 
