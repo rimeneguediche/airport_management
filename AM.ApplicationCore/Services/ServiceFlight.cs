@@ -32,6 +32,14 @@ namespace AM.ApplicationCore.Services
             
         }
 
+        public IEnumerable<DateTime> GetFlightdates(string Destination)
+        {
+            var query = from flight in Flights
+                        where flight.Destination == Destination
+                        select flight.FlightDate;
+            return query;
+        }
+
 
 
         //TP2-Q8: Implémenter la méthode GetFlights(string filterType, string filterValue)
@@ -40,30 +48,47 @@ namespace AM.ApplicationCore.Services
             switch (filterType)
             {
                 case "Destination":
-                    foreach (Flight f in Flights)
+                    foreach (var item in Flights)
                     {
-                        if (f.Destination.Equals(filterValue))
-                            Console.WriteLine(f);
+                        if (item.Destination == filterValue)
+                        {
+                            Console.WriteLine(item);
+                        }
                     }
                     break;
                 case "FlightDate":
-                    foreach (Flight f in Flights)
+                    foreach (var item in Flights)
                     {
-                        if (f.FlightDate == DateTime.Parse(filterValue))
-                            Console.WriteLine(f);
+                        if (item.FlightDate == DateTime.Parse(filterValue))
+                        {
+                            Console.WriteLine(item);
+                        }
                     }
                     break;
-                case "EffectiveArrival":
-                    foreach (Flight f in Flights)
+                case "Departure":
+                    foreach (var item in Flights)
                     {
-                        if (f.EffectiveArrival == DateTime.Parse(filterValue))
-                            Console.WriteLine(f);
+                        if (item.Departure == filterValue)
+                        {
+                            Console.WriteLine(item);
+                        }
                     }
                     break;
+                case "FlightID":
+                    foreach (var item in Flights)
+                    {
+                        if (item.FlightId == int.Parse(filterValue))
+                        {
+                            Console.WriteLine(item);
+                        }
+                    }
+                    break;
+
             }
 
-            
         }
+
+
         
         }
     }
