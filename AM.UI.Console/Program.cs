@@ -27,5 +27,19 @@ sf.Flights = TestData.listFlights;
 //    Console.WriteLine(item);
 //}
 
-sf.FlightDetailsDel(TestData.BoingPlane);
-Console.WriteLine(sf.DurationAverageDel("Paris"));
+
+
+//sf.FlightDetailsDel(TestData.BoingPlane);
+//Console.WriteLine(sf.DurationAverageDel("Paris"));
+
+
+
+Passenger passenger1 = new Passenger()
+{
+    FirstName = "houssemeddine",
+    LastName = "mhedhbi",
+    EmailAddress = "abc@gmail.com"
+};
+Console.WriteLine(passenger1.ToString());
+PassangerExtension.UpperFullName(passenger1);
+Console.WriteLine(passenger1.ToString());
